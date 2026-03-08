@@ -14,7 +14,104 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      projects: {
+        Row: {
+          budget: number
+          budget_spent: number
+          complexity: string
+          created_at: string
+          description: string | null
+          id: string
+          months_elapsed: number
+          name: string
+          risk_score: number
+          status: string
+          team_size: number
+          timeline_months: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          budget?: number
+          budget_spent?: number
+          complexity?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          months_elapsed?: number
+          name: string
+          risk_score?: number
+          status?: string
+          team_size?: number
+          timeline_months?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          budget?: number
+          budget_spent?: number
+          complexity?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          months_elapsed?: number
+          name?: string
+          risk_score?: number
+          status?: string
+          team_size?: number
+          timeline_months?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      risk_factors: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          impact: number
+          is_mitigated: boolean
+          mitigation: string | null
+          name: string
+          probability: number
+          project_id: string
+          severity: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          id?: string
+          impact?: number
+          is_mitigated?: boolean
+          mitigation?: string | null
+          name: string
+          probability?: number
+          project_id: string
+          severity?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          impact?: number
+          is_mitigated?: boolean
+          mitigation?: string | null
+          name?: string
+          probability?: number
+          project_id?: string
+          severity?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "risk_factors_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
